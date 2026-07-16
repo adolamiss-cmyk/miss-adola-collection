@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miss Adola Collections - Premium Swimwear & Lingerie</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/products.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <h1>MISS ADOLA</h1>
+                    <p>Collections</p>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Elegance Meets <span>Bold</span></h2>
+            <p>Discover Premium Swimwear & Intimate Apparel</p>
+            <button class="cta-btn" onclick="document.getElementById('collections').scrollIntoView({behavior: 'smooth'})">Shop Now</button>
+        </div>
+        <div class="hero-image">
+            <div class="image-placeholder">
+                <i class="fas fa-image"></i>
+                <p>Hero Image</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections/Categories Section -->
+    <section class="collections" id="collections">
+        <div class="container">
+            <h2 class="section-title">Our Collections</h2>
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="bikinis">Bikinis</button>
+                <button class="filter-btn" data-filter="one-piece">One-Piece</button>
+                <button class="filter-btn" data-filter="lingerie">Lingerie</button>
+                <button class="filter-btn" data-filter="accessories">Accessories</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="product-detail">
+                <div class="product-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-image"></i>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h2 id="modalProductName"></h2>
+                    <p class="product-category" id="modalProductCategory"></p>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(128 reviews)</span>
+                    </div>
+                    <p class="product-description" id="modalProductDescription"></p>
+                    <div class="price-section">
+                        <span class="price" id="modalProductPrice"></span>
+                        <span class="original-price" id="modalProductOriginalPrice"></span>
+                    </div>
+                    <div class="product-options">
+                        <div class="size-selector">
+                            <label>Size:</label>
+                            <select id="sizeSelect">
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                                <option>XXL</option>
+                            </select>
+                        </div>
+                        <div class="color-selector">
+                            <label>Color:</label>
+                            <select id="colorSelect">
+                                <option>Black</option>
+                                <option>White</option>
+                                <option>Gold</option>
+                                <option>Navy</option>
+                            </select>
+                        </div>
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <input type="number" id="quantityInput" min="1" value="1">
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" id="addToCartBtn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping:</span>
+                <span id="shipping">$0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total">$0.00</span>
+            </div>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Miss Adola</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to Miss Adola Collections, where elegance meets bold fashion. We specialize in premium swimwear, bikinis, and intimate apparel designed for the modern woman who knows what she wants.</p>
+                    <p>Our mission is to provide high-quality, stylish pieces that make you feel confident and beautiful.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h4>Fast Shipping</h4>
+                        <p>Free shipping on orders over $50</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Secure Payment</h4>
+                        <p>100% secure transactions</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-redo"></i>
+                        <h4>Easy Returns</h4>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Fashion Street, Style City, SC 12345</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@missadola.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Miss Adola Collections</h4>
+                    <p>Premium swimwear and intimate apparel for the confident woman.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#collections">Shop</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="todo.html">Todo App</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Miss Adola Collections. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
